@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 
+import Todo from './Todo.jsx';
+import Doing from './Doing.jsx';
+import Done from './Done.jsx';
+import ColumnHeader from './ColumnHeader.jsx';
+
 function App() {
 
   useEffect(() => {
@@ -13,7 +18,12 @@ function App() {
         My Daily Scrum Board
       </div>
       <div className="main-container">
-        new
+        <ColumnHeader />
+        <div className="column-container">
+          <Todo />
+          <Doing />
+          <Done />
+        </div>
       </div>
     </div>
   );
