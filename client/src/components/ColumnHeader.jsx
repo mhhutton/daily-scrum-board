@@ -1,10 +1,11 @@
 import React from 'react';
+import AddActivity from './AddActivity.jsx';
 
 function ColumnHeader() {
   return (
     <div className="main-container-header">
       <div>
-        Add New Activity
+        <AddActivity />
       </div>
       <div>
         Information About this App
