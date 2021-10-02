@@ -7,6 +7,10 @@ import Done from './Done.jsx';
 import ColumnHeader from './ColumnHeader.jsx';
 
 function App() {
+  const [todoList, setTodoList] = useState([]);
+  const [doingList, setDoingList] = useState([]);
+  const [doneList, setDoneList] = useState([]);
+
   useEffect(() => {
   }, []);
 
@@ -16,11 +20,15 @@ function App() {
         My Daily Scrum Board
       </div>
       <div className="main-container">
-        <ColumnHeader />
+        <ColumnHeader
+          setTodoList={setTodoList}
+          setDoingList={setDoingList}
+          setDoneList={setDoneList}
+        />
         <div className="column-container">
-          <Todo />
-          <Doing />
-          <Done />
+          <Todo todoList={todoList} />
+          <Doing doingList={doingList} />
+          <Done doneList={doneList} />
         </div>
       </div>
     </div>
