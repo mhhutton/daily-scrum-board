@@ -9,6 +9,7 @@ import {
 function AddActivity() {
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleDialogOpen = () => {
     setOpen(true);
@@ -43,6 +44,19 @@ function AddActivity() {
           // error={nameError}
           // required={true}
         />
+        <Select
+          labelId="select-category"
+          id="select-category"
+          // open={setOpen}
+          // open={handleSelectClose}
+          // onOpen={handleSelectOpen}
+          // value={category}
+          // onChange={(event) => setCategory(event.target.value)}
+        >
+          <MenuItem value="todo">To Do</MenuItem>
+          <MenuItem value="doing">Doing</MenuItem>
+          <MenuItem value="done">Done</MenuItem>
+        </Select>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">
             Cancel
