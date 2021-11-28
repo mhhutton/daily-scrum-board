@@ -6,7 +6,7 @@ import {
   Select, MenuItem, InputLabel, Typography, Container
 } from '@material-ui/core';
 
-function AddActivity() {
+function AddActivity({ todoList, setTodoList, setDoingList, doingList, doneList, setDoneList }) {
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
   const [category, setCategory] = useState('');
@@ -19,6 +19,13 @@ function AddActivity() {
   };
   const handleAddActivity = () => {
     setOpen(false);
+    if (category === 'todoList') {
+      setTodoList([...todoList, msg]);
+    } else if (category === 'doingList') {
+      setDoingList([...doingList, msg]);
+    } else if (category === 'doneList') {
+      setDoneList([...doneList, msg]);
+    }
   };
 
   return (
@@ -29,7 +36,7 @@ function AddActivity() {
       >
         Add New Activity
       </Button>
-      <Dialog open={open} onClose={handleDialogClose}>
+      <Dialog className="add-activity-dialog" open={open} onClose={handleDialogClose}>
         <DialogContentText> PLEASE FILL IN ALL REQUIRED FIELDS </DialogContentText>
         <TextField
           // className={classes.modalBox}
@@ -39,24 +46,34 @@ function AddActivity() {
           label="Activity"
           placeholder="Enter Activity Description"
           type="text"
-          fullWidth
+          // fullWidth
+          multiline
+          rows={4}
+          variant="filled"
           onChange={(event) => setMsg(event.target.value)}
           // error={nameError}
           // required={true}
         />
-        <Select
-          labelId="select-category"
-          id="select-category"
-          // open={setOpen}
-          // open={handleSelectClose}
-          // onOpen={handleSelectOpen}
-          // value={category}
-          // onChange={(event) => setCategory(event.target.value)}
-        >
-          <MenuItem value="todo">To Do</MenuItem>
-          <MenuItem value="doing">Doing</MenuItem>
-          <MenuItem value="done">Done</MenuItem>
-        </Select>
+        <RadioGroup>
+          <FormControlLabel
+            value="todoList"
+            control={<Radio />}
+            label="To Do"
+            onChange={(event) => setCategory(event.target.value)}
+          />
+          <FormControlLabel
+            value="doingList"
+            control={<Radio />}
+            label="Doing"
+            onChange={(event) => setCategory(event.target.value)}
+          />
+          <FormControlLabel
+            value="doneList"
+            control={<Radio />}
+            label="Done"
+            onChange={(event) => setCategory(event.target.value)}
+          />
+        </RadioGroup>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">
             Cancel

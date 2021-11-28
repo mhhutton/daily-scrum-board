@@ -21,6 +21,9 @@ function App() {
       </div>
       <div className="main-container">
         <ColumnHeader
+          todoList={todoList}
+          doingList={doingList}
+          doneList={doneList}
           setTodoList={setTodoList}
           setDoingList={setDoingList}
           setDoneList={setDoneList}
